@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import Image from "next/image"; // Import Next.js Image component for better optimization
 
 // Define the type for CupboardCard props
 interface CupboardCardProps {
@@ -18,16 +19,18 @@ const CupboardCard: React.FC<CupboardCardProps> = ({
 }) => {
   return (
     <div className="bg-white shadow-lg rounded-lg overflow-hidden group transform hover:scale-105 transition-all duration-300 hover:shadow-xl">
-      <img
+      <Image
         src={imageUrl}
         alt={title}
+        width={400}
+        height={250}
         className="w-full h-56 object-cover group-hover:opacity-80 transition-opacity duration-300"
         onClick={() => onClick(imageUrl)}
       />
       <div className="p-4">
         <h4 className="text-lg font-medium text-black mb-2">{title}</h4>
         <h5 className="text-xl font-semibold text-gray-800 mb-4">
-         Rs. {price.toLocaleString()}
+          Rs. {price.toLocaleString()}
         </h5>
         <button className="bg-yellow-500 text-white py-2 px-4 rounded-lg w-full hover:bg-yellow-400 transition duration-300">
           Add to Cart
@@ -49,9 +52,11 @@ const Modal: React.FC<ModalProps> = ({ imageUrl, onClose }) => {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50 transition-opacity duration-300">
       <div className="relative">
-        <img
+        <Image
           src={imageUrl}
           alt="Full screen image"
+          width={1000}
+          height={700}
           className="max-w-[90vw] max-h-[90vh] object-contain rounded-lg shadow-lg"
         />
         <button
@@ -91,9 +96,11 @@ const Page: React.FC = () => {
     <div className="w-full py-8 px-4 bg-gray-100">
       {/* Image Above the Search Bar */}
       <div className="w-full h-60 mb-8 overflow-hidden relative rounded-lg shadow-lg">
-        <img
-          src="./images/cupboardbanner.avif" // Placeholder cover image
+        <Image
+          src="/images/cupboardbanner.avif"
           alt="Cupboard Collection Banner"
+          width={1200}
+          height={400}
           className="w-full h-full object-cover transform transition-transform duration-500 hover:scale-105"
         />
         <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-40 flex items-center justify-center text-center">

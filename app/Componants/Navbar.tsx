@@ -36,7 +36,7 @@ const Navbar: React.FC = () => {
   return (
     <div>
       <nav
-        className={`bg-gray-800 text-white py-4 w-full fixed top-0 left-0 transition-all duration-300 ease-in-out  ${
+        className={`bg-gray-800 text-white py-4 w-full fixed top-0 left-0 transition-all duration-300 ease-in-out z-50 ${
           isVisible ? "translate-y-0" : "-translate-y-full"
         }`}
       >

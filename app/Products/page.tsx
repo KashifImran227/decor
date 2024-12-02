@@ -1,6 +1,6 @@
-'use client'
-// pages/index.tsx or wherever your Products component is being used
+"use client";
 import Link from "next/link";
+import Image from "next/image"; // Import next/image for optimized images
 import React from "react";
 
 // Define types for product data
@@ -67,9 +67,6 @@ const Products: React.FC = () => {
     },
   ];
 
-    // Add more products as needed...
-  
-
   return (
     <div className="py-12 bg-gray-100">
       <div className="container mx-auto px-6">
@@ -92,11 +89,16 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       {/* Product Image */}
       <div className="relative h-64 w-full">
         <Link href={`/products/${product.id}`} passHref>
-          <img
-            src={product.images[0]} // Display the first image in the array
-            alt={product.name}
-            className="h-full w-full object-cover rounded-t-lg transition-transform duration-300"
-          />
+          <a>
+            {/* Using next/image for optimized image loading */}
+            <Image
+              src={product.images[0]} // Display the first image in the array
+              alt={product.name}
+              className="h-full w-full object-cover rounded-t-lg transition-transform duration-300"
+              layout="fill"
+              objectFit="cover"
+            />
+          </a>
         </Link>
       </div>
 
@@ -117,4 +119,3 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 };
 
 export default Products;
-

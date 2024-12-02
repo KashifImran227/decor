@@ -1,15 +1,18 @@
 "use client";
 import React from "react";
+import Image from "next/image";
 
 const Cards2 = () => {
   return (
-    <div className="flex w-full h-screen flex-col lg:flex-row">
+    <div className="flex w-full flex-col lg:flex-row">
       {/* Full-width Image 1 (Left side) */}
       <div className="relative w-full lg:w-1/2 h-96 lg:h-full overflow-hidden group mb-6 lg:mb-0 lg:mr-4">
-        <img
+        <Image
           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-          src="./bed3.jpg"
-          alt="Large Image 1"
+          src="/images/bed3.jpg" // Correct path inside public/images folder
+          alt="King Size Beds"
+          width={600}
+          height={400}
         />
         <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-40 flex items-center justify-center text-center transition-opacity duration-300 group-hover:bg-opacity-60">
           <div className="text-center px-6 py-4">
@@ -38,10 +41,12 @@ const Cards2 = () => {
 
       {/* Full-width Image 2 (Right side) */}
       <div className="relative w-full lg:w-1/2 h-96 lg:h-full overflow-hidden group mb-6 lg:mb-0 lg:ml-4">
-        <img
+        <Image
           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-          src="./bed5.jpg"
-          alt="Large Image 2"
+          src="/images/bed5.jpg" // Correct path inside public/images folder
+          alt="Premium Bedroom Sets"
+          width={600}
+          height={400}
         />
         <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-40 flex items-center justify-center text-center transition-opacity duration-300 group-hover:bg-opacity-60">
           <div className="text-center px-6 py-4">

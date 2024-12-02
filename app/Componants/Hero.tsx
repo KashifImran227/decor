@@ -1,5 +1,6 @@
 "use client";
-import Link from "next/link";
+import Link from "next/link"; // Import Link from Next.js
+import Image from "next/image"; // Import Image from Next.js
 import React, { useState, useEffect } from "react";
 import { FaFacebookF, FaInstagram, FaWhatsapp } from "react-icons/fa";
 
@@ -11,54 +12,44 @@ const Page: React.FC = () => {
     { src: "/cupboard.jpg", link: "/cupboard" },
   ];
 
-  // State to hold the current image index
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  // State to track the scroll position and update opacity
   const [scrollPosition, setScrollPosition] = useState(0);
 
-  // useEffect to change the image every 5 seconds
+  // Automatically change the image every 4 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 4000); // Change image every 4 seconds
+    }, 4000);
 
-    // Cleanup interval on component unmount
     return () => clearInterval(interval);
-  }, []);
+  }, [images.length]);
 
-  // useEffect to track scroll position and update opacity
+  const handleScroll = () => {
+    setScrollPosition(window.scrollY);
+  };
+
   useEffect(() => {
-    const handleScroll = () => {
-      setScrollPosition(window.scrollY); // Update the scroll position
-    };
-
     window.addEventListener("scroll", handleScroll);
-
-    // Cleanup the event listener
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Calculate the opacity based on the scroll position
   const getOpacity = () => {
-    const opacity = Math.max(1 - scrollPosition / 500, 0.1); // Adjust 500 value for more control
-    return opacity;
+    return Math.max(1 - scrollPosition / 500, 0.1);
   };
 
   return (
     <div className="relative bg-gray-800 text-white">
-      {/* Hero Section Background Image with Link */}
       <Link href={images[currentImageIndex].link}>
+        {/* Using Image component to display the background */}
         <div
           className="absolute inset-0 bg-cover bg-center cursor-pointer"
-          style={{ backgroundImage: `url(${images[currentImageIndex].src})` }} // Dynamically change background image
+          style={{ backgroundImage: `url(${images[currentImageIndex].src})` }}
         ></div>
       </Link>
-      {/* Semi-Transparent Overlay */}
+
       <div className="absolute inset-0 bg-black opacity-50"></div>
-      {/* Hero Content */}
+
+      {/* Hero Section Content */}
       <div className="relative container mx-auto py-32 px-6 text-center z-10">
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-4 text-white drop-shadow-md">
           Welcome to Furniture Shop
@@ -85,33 +76,30 @@ const Page: React.FC = () => {
 
       {/* Social Media Icons Fixed Bottom Right */}
       <div className="fixed bottom-6 sm:bottom-8 right-6 sm:right-8 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 z-50">
-        {/* Facebook Icon */}
         <a
           href="https://www.facebook.com"
           target="_blank"
           rel="noopener noreferrer"
           className="bg-blue-600 text-white p-3 rounded-full shadow-lg opacity-70 hover:opacity-100 hover:bg-blue-500 hover:scale-110 transform transition-all duration-300 ease-in-out"
-          style={{ opacity: getOpacity() }} // Dynamically set opacity
+          style={{ opacity: getOpacity() }}
         >
           <FaFacebookF size={30} />
         </a>
-        {/* Instagram Icon */}
         <a
           href="https://www.instagram.com"
           target="_blank"
           rel="noopener noreferrer"
           className="bg-pink-600 text-white p-3 rounded-full shadow-lg opacity-70 hover:opacity-100 hover:bg-pink-500 hover:scale-110 transform transition-all duration-300 ease-in-out"
-          style={{ opacity: getOpacity() }} // Dynamically set opacity
+          style={{ opacity: getOpacity() }}
         >
           <FaInstagram size={30} />
         </a>
-        {/* WhatsApp Icon */}
         <a
-          href="https://wa.me/+923208264272" // Replace with your WhatsApp number
+          href="https://wa.me/+923208264272"
           target="_blank"
           rel="noopener noreferrer"
           className="bg-green-600 text-white p-3 rounded-full shadow-lg opacity-70 hover:opacity-100 hover:bg-green-500 hover:scale-110 transform transition-all duration-300 ease-in-out"
-          style={{ opacity: getOpacity() }} // Dynamically set opacity
+          style={{ opacity: getOpacity() }}
         >
           <FaWhatsapp size={30} />
         </a>

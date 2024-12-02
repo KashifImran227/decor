@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import Image from "next/image"; // Import Next.js Image component for better optimization
 
 // Define the type for BedroomSetCard props
 interface BedroomSetCardProps {
@@ -18,15 +19,17 @@ const BedroomSetCard: React.FC<BedroomSetCardProps> = ({
 }) => {
   return (
     <div className="bg-white shadow-lg rounded-lg overflow-hidden group hover:scale-105 transition-all duration-300">
-      <img
+      <Image
         src={imageUrl} // Dynamically set the image URL for each card
         alt={title}
+        width={400} // Add width and height for Next.js optimization
+        height={250}
         className="w-full h-56 object-cover group-hover:opacity-80 transition-opacity duration-300"
         onClick={() => onClick(imageUrl)} // Trigger onClick function when image is clicked
       />
       <div className="p-4">
         <h4 className="text-lg font-medium text-black mb-2">
-         Rs. {price.toLocaleString()}
+          Rs. {price.toLocaleString()}
         </h4>
         <button className="bg-yellow-500 text-white py-2 px-4 rounded-lg w-full hover:bg-yellow-400 transition duration-300">
           Add to Cart
@@ -46,11 +49,13 @@ const Modal: React.FC<ModalProps> = ({ imageUrl, onClose }) => {
   if (!imageUrl) return null; // Don't render if no image URL is provided
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50">
+    <div className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50 opacity-100 transition-opacity duration-300">
       <div className="relative">
-        <img
+        <Image
           src={imageUrl}
           alt="Full screen image"
+          width={1000} // Add width and height for full-screen view
+          height={700}
           className="max-w-[90vw] max-h-[90vh] object-contain" // Ensure image does not stretch and maintains its aspect ratio
         />
         <button
@@ -86,13 +91,20 @@ const Page: React.FC = () => {
     setSelectedImage(null); // Reset the selected image to close the modal
   };
 
+  // Function to handle "Add to Cart" action
+  const handleAddToCart = (title: string): void => {
+    alert(`${title} has been added to your cart!`); // Placeholder for adding to cart
+  };
+
   return (
     <div className="w-full py-8 px-4 bg-gray-100">
       {/* Image Above the Search Bar */}
       <div className="w-full h-60 mb-8 overflow-hidden relative">
-        <img
-          src="main.webp"
+        <Image
+          src="/main.webp"
           alt="Bedroom Sets Banner"
+          width={1200} // Provide width and height for Next.js optimization
+          height={400}
           className="w-full h-full object-cover"
         />
         <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-40 flex items-center justify-center text-center">
@@ -111,7 +123,7 @@ const Page: React.FC = () => {
         {bedroomSets.length > 0 ? (
           bedroomSets.map((set, index) => (
             <BedroomSetCard
-              key={index}
+              key={set.title} // Use the unique title as the key
               title={set.title}
               price={set.price}
               imageUrl={set.imageUrl}

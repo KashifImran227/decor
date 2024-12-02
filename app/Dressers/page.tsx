@@ -1,15 +1,16 @@
 "use client";
 import React, { useState } from "react";
+import Image from "next/image"; // Import the Next.js Image component
 
 // Define the type for the ImageCard props
 interface ImageCardProps {
   imageUrl: string;
   price: number;
-  onClick: (imageUrl: string) => void; // Function type to handle image click
-  onAddToCart: (imageUrl: string) => void; // Function type to handle "Add to Cart" action
+  onClick: (imageUrl: string) => void;
+  onAddToCart: (imageUrl: string) => void;
 }
 
-// The Card component that displays each image with price and Add to Cart button.
+// The Card component that displays each image with price and Add to Cart button
 const ImageCard: React.FC<ImageCardProps> = ({
   imageUrl,
   price,
@@ -18,9 +19,11 @@ const ImageCard: React.FC<ImageCardProps> = ({
 }) => {
   return (
     <div className="bg-white rounded-lg shadow-lg overflow-hidden group cursor-pointer transition-all transform hover:scale-105 hover:shadow-2xl">
-      <img
+      <Image
         src={imageUrl}
         alt="dresser"
+        width={400} // Specify width for optimization
+        height={300} // Specify height for optimization
         className="w-full h-56 object-cover rounded-md transition-transform transform group-hover:scale-105"
         onClick={() => onClick(imageUrl)} // When clicked, trigger the onClick function passed from parent
       />
@@ -42,21 +45,23 @@ const ImageCard: React.FC<ImageCardProps> = ({
   );
 };
 
-// Modal component for displaying the image in full-screen.
+// Modal component for displaying the image in full-screen
 interface ModalProps {
   imageUrl: string | null;
   onClose: () => void;
 }
 
 const Modal: React.FC<ModalProps> = ({ imageUrl, onClose }) => {
-  if (!imageUrl) return null; // Don't render if no image URL is provided.
+  if (!imageUrl) return null; // Don't render if no image URL is provided
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50 opacity-0 transition-opacity duration-300">
       <div className="relative">
-        <img
+        <Image
           src={imageUrl}
           alt="Full screen dresser"
+          width={800} // Specify the width for modal image
+          height={600} // Specify the height for modal image
           className="max-w-[90vw] max-h-[90vh] object-contain transition-all transform"
         />
         <button
@@ -114,9 +119,11 @@ const Page: React.FC = () => {
       <div className="pt-0">
         {/* Banner Image */}
         <div className="w-full h-56 mb-8 overflow-hidden relative">
-          <img
+          <Image
             src="/images/dresserbanner.jpg" // Replace with your banner image path
             alt="Banner"
+            width={1200} // Image width
+            height={400} // Image height
             className="w-full h-full object-cover"
           />
           <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-40 flex items-center justify-center text-center">
@@ -157,9 +164,11 @@ const Page: React.FC = () => {
                   key={index}
                   className="text-lg text-gray-700 flex justify-between items-center"
                 >
-                  <img
+                  <Image
                     src={item}
                     alt={`Cart Item ${index + 1}`}
+                    width={50} // Width for small cart image
+                    height={50} // Height for small cart image
                     className="w-12 h-12 object-cover inline mr-2"
                   />
                   Item {index + 1}

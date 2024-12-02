@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Image from "next/image"; // Import the Next.js Image component for optimization
 
 // Dining Data Type
 interface Dining {
@@ -66,9 +67,11 @@ const Page: React.FC = () => {
     <div className="w-full py-8 px-4 bg-gray-100">
       {/* Banner */}
       <div className="w-full h-60 mb-8 overflow-hidden relative">
-        <img
-          src="/images/diningbanner.jpg" // Change this to the path of your banner image
+        <Image
+          src="/images/diningbanner.jpg"
           alt="Dining Collection Banner"
+          width={1200} // Specify the width for Image optimization
+          height={400} // Specify the height for Image optimization
           className="w-full h-full object-cover"
         />
         <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-40 flex items-center justify-center text-center">
@@ -91,9 +94,11 @@ const Page: React.FC = () => {
             className="bg-white shadow-lg rounded-lg overflow-hidden group hover:scale-105 transition-all duration-300"
           >
             {/* Dining Image */}
-            <img
+            <Image
               src={dining.imageUrl}
               alt={dining.name}
+              width={400} // Specify the width for Image optimization
+              height={250} // Specify the height for Image optimization
               className="w-full h-56 object-cover group-hover:opacity-80 transition-opacity duration-300"
             />
 

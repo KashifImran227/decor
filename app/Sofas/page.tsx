@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link"; // Don't forget to import Link
 
 // Sofa Data Type
@@ -88,6 +88,15 @@ const Page: React.FC = () => {
     },
   ];
 
+  // Cart state to hold added items
+  const [cart, setCart] = useState<Sofa[]>([]);
+
+  // Handle Add to Cart functionality
+  const handleAddToCart = (sofa: Sofa) => {
+    setCart((prevCart) => [...prevCart, sofa]);
+    alert(`${sofa.name} added to cart!`);
+  };
+
   return (
     <div className="w-full py-8 px-4 bg-gray-100">
       {/* Banner */}
@@ -125,13 +134,30 @@ const Page: React.FC = () => {
             <div className="p-4">
               <p className="text-gray-600 text-lg mb-4">{sofa.price}</p>
 
-              <button className="bg-yellow-500 text-white py-2 px-4 rounded-lg w-full hover:bg-yellow-400 transition duration-300">
+              <button
+                onClick={() => handleAddToCart(sofa)}
+                className="bg-yellow-500 text-white py-2 px-4 rounded-lg w-full hover:bg-yellow-400 transition duration-300"
+              >
                 Add to Cart
               </button>
             </div>
           </div>
         ))}
       </div>
+
+      {/* Cart Summary */}
+      {cart.length > 0 && (
+        <div className="mt-12">
+          <h2 className="text-2xl font-semibold text-center">Shopping Cart</h2>
+          <ul className="mt-4 text-center">
+            {cart.map((item, index) => (
+              <li key={index} className="text-lg text-gray-700">
+                {item.name} - {item.price}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };

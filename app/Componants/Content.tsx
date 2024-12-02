@@ -1,10 +1,11 @@
 "use client";
 import React from "react";
+import Image from "next/image";
 
 const Content = () => {
   return (
     <div className="py-20 bg-gradient-to-r from-[#1f1f1f] via-[#2C3E50] to-[#34495E]">
-      <div className="container mx-auto px-6 ">
+      <div className="container mx-auto px-6">
         <h2 className="text-4xl font-extrabold text-white text-center mb-12 tracking-wide font-poppins">
           About Our Premium Furniture
         </h2>
@@ -38,10 +39,12 @@ const Content = () => {
           </div>
 
           {/* Image Section */}
-          <div className="relative max-h-[500px] rounded-lg overflow-hidden shadow-2xl transition-transform duration-300 hover:scale-105 ">
-            <img
-              src="/hand.jpg" // Replace with your custom image path
+          <div className="relative max-h-[500px] rounded-lg overflow-hidden shadow-2xl transition-transform duration-300 hover:scale-105">
+            <Image
+              src="/hand.jpg" // Correct path relative to the public folder
               alt="Pakistani furniture"
+              width={1000} // Adjust based on your design
+              height={500} // Adjust based on your design
               className="w-full h-auto max-h-[500px] object-cover rounded-lg shadow-lg transition-all duration-500 ease-in-out hover:opacity-80"
             />
             <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
