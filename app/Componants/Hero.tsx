@@ -1,6 +1,5 @@
 "use client";
-import Link from "next/link"; // Import Link from Next.js
-import Image from "next/image"; // Import Image from Next.js
+import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { FaFacebookF, FaInstagram, FaWhatsapp } from "react-icons/fa";
 
@@ -24,15 +23,16 @@ const Page: React.FC = () => {
     return () => clearInterval(interval);
   }, [images.length]);
 
-  const handleScroll = () => {
-    setScrollPosition(window.scrollY);
-  };
-
+  // Scroll event handling
   useEffect(() => {
+    const handleScroll = () => {
+      setScrollPosition(window.scrollY);
+    };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Dynamic opacity based on scroll
   const getOpacity = () => {
     return Math.max(1 - scrollPosition / 500, 0.1);
   };
@@ -40,7 +40,6 @@ const Page: React.FC = () => {
   return (
     <div className="relative bg-gray-800 text-white">
       <Link href={images[currentImageIndex].link}>
-        {/* Using Image component to display the background */}
         <div
           className="absolute inset-0 bg-cover bg-center cursor-pointer"
           style={{ backgroundImage: `url(${images[currentImageIndex].src})` }}
@@ -58,12 +57,13 @@ const Page: React.FC = () => {
           Find the perfect furniture for your home and style with us. From
           stylish bedroom sets to comfy sofas!
         </p>
-        <a
-          href="/Products"
+
+        <Link
+          href="/Beds"
           className="bg-yellow-500 text-gray-800 hover:bg-yellow-400 font-semibold py-2 px-6 rounded-lg transition duration-300"
         >
-          Shop Now
-        </a>
+          Explore
+        </Link>
       </div>
 
       {/* Marquee Text Below Hero Section */}
@@ -76,7 +76,7 @@ const Page: React.FC = () => {
 
       {/* Social Media Icons Fixed Bottom Right */}
       <div className="fixed bottom-6 sm:bottom-8 right-6 sm:right-8 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 z-50">
-        <a
+        <Link
           href="https://www.facebook.com"
           target="_blank"
           rel="noopener noreferrer"
@@ -84,8 +84,8 @@ const Page: React.FC = () => {
           style={{ opacity: getOpacity() }}
         >
           <FaFacebookF size={30} />
-        </a>
-        <a
+        </Link>
+        <Link
           href="https://www.instagram.com"
           target="_blank"
           rel="noopener noreferrer"
@@ -93,8 +93,8 @@ const Page: React.FC = () => {
           style={{ opacity: getOpacity() }}
         >
           <FaInstagram size={30} />
-        </a>
-        <a
+        </Link>
+        <Link
           href="https://wa.me/+923208264272"
           target="_blank"
           rel="noopener noreferrer"
@@ -102,7 +102,7 @@ const Page: React.FC = () => {
           style={{ opacity: getOpacity() }}
         >
           <FaWhatsapp size={30} />
-        </a>
+        </Link>
       </div>
     </div>
   );

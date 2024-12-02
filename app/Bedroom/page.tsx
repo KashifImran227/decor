@@ -91,11 +91,8 @@ const Page: React.FC = () => {
     setSelectedImage(null); // Reset the selected image to close the modal
   };
 
-  // Function to handle "Add to Cart" action
-  const handleAddToCart = (title: string): void => {
-    alert(`${title} has been added to your cart!`); // Placeholder for adding to cart
-  };
-
+ 
+ 
   return (
     <div className="w-full py-8 px-4 bg-gray-100">
       {/* Image Above the Search Bar */}

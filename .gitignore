@@ -38,3 +38,23 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Ignore specific unused components
+unusedComponent.tsx
+
+# Ignore folders that are not being used anymore
+src/old-components/
+
+# Ignore temporary or build files
+.next/
+out/
+
+# Ignore logs
+*.log
+*.map
+
+# Ignore any IDE-specific files like VS Code
+.vscode/
+
+
+.vercel

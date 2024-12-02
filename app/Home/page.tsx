@@ -1,6 +1,6 @@
 "use client";
-import Link from "next/link";
 import React from "react";
+
 
 const Page: React.FC = () => {
   return (
@@ -20,12 +20,8 @@ const Page: React.FC = () => {
           Find the perfect furniture for your home and style with us. From
           stylish bedroom sets to comfy sofas!
         </p>
-        <a
-          href="#products"
-          className="bg-yellow-500 text-gray-800 hover:bg-yellow-400 font-semibold py-2 px-6 rounded-lg transition duration-300"
-        >
-          Shop Now
-        </a>
+       
+       
       </div>
     </div>
   );
