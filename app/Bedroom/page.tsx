@@ -118,7 +118,7 @@ const Page: React.FC = () => {
       {/* Grid Layout of Bedroom Sets */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8">
         {bedroomSets.length > 0 ? (
-          bedroomSets.map((set, index) => (
+          bedroomSets.map((set,) => (
             <BedroomSetCard
               key={set.title} // Use the unique title as the key
               title={set.title}
